@@ -1,0 +1,224 @@
+/* ===== ENTRADA CINEMATOGRÁFICA ===== */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: radial-gradient(
+    circle at center,
+    #1b2a57 0%,
+    #0a1440 60%,
+    #060d2b 100%
+  );
+  overflow-x: hidden;
+}
+
+/* Fade general al abrir la invitación */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInSmooth 1.2s ease forwards;
+}
+
+.fade-delay-1 {
+  animation-delay: 0.6s;
+}
+.fade-delay-2 {
+  animation-delay: 1.2s;
+}
+.fade-delay-3 {
+  animation-delay: 1.8s;
+}
+.fade-delay-4 {
+  animation-delay: 2.4s;
+}
+
+@keyframes fadeInSmooth {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Halo luminoso central estilo invitación premium */
+.cinematic-halo {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  animation: haloAppear 2s ease forwards;
+  animation-delay: 0.4s;
+  pointer-events: none;
+}
+
+@keyframes haloAppear {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Ondas inferiores suaves */
+.wave-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(255, 255, 255, 0.15) 40%,
+    transparent 70%
+  );
+  filter: blur(12px);
+  opacity: 0;
+  animation: waveFade 2s ease forwards;
+  animation-delay: 1.2s;
+  pointer-events: none;
+}
+
+@keyframes waveFade {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Parallax extremadamente sutil */
+.parallax-soft {
+  animation: floatSoft 8s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Botón premium */
+.btn-premium {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 12px 28px;
+  letter-spacing: 0.15em;
+  font-size: 12px;
+  color: #fff;
+  background: transparent;
+  transition: all 0.35s ease;
+}
+
+.btn-premium:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive fino */
+@media (max-width: 768px) {
+  .wave-bottom {
+    height: 140px;
+  }
+}
+
+/* ===== FOCO CINEMATOGRÁFICO DEL HERO ===== */
+
+.hero-focus {
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(1.04);
+  transition:
+    opacity 1.2s ease,
+    filter 1.2s ease,
+    transform 1.2s ease;
+}
+
+.hero-focus.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* brillo sutil en el nombre */
+.name-glow {
+  position: relative;
+}
+
+.name-glow::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.35) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  filter: blur(18px);
+  transition: opacity 1.4s ease;
+  pointer-events: none;
+}
+
+.name-glow.show::after {
+  opacity: 0.6;
+}
+
+/* ===== PARTÍCULAS DE LUZ (SÚPER SUTIL) ===== */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; // detrás del contenido central
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  opacity: 0;
+  filter: blur(0.2px);
+  animation-name: particleFloat, particleTwinkle;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+  animation-direction: alternate, alternate;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+@keyframes particleTwinkle {
+  0%,
+  30% {
+    opacity: 0.03;
+  }
+  60% {
+    opacity: 0.38;
+  }
+  100% {
+    opacity: 0.14;
+  }
+}
+
+@media (max-width: 768px) {
+  .particle {
+    width: 5px;
+    height: 5px;
+  }
+}
