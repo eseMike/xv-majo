@@ -87,6 +87,11 @@
   }
 </style>
 <div [class.no-scroll]="!isOpened">
+  <!-- contenedor global de confeti -->
+  <div
+    id="confetti-root"
+    class="fixed inset-0 pointer-events-none z-[9999]"
+  ></div>
   <section
     class="min-h-screen bg-[#0b1440] text-white flex items-center justify-center relative overflow-hidden"
   >
@@ -98,6 +103,7 @@
       [class.overlay-exit]="overlayFading"
     >
       <button
+        type="button"
         (click)="openInvitation()"
         class="px-8 py-4 rounded-full border border-white/40 text-white text-sm tracking-[0.3em] uppercase backdrop-blur-md hover:bg-white/10 transition"
       >
@@ -139,6 +145,9 @@
     <div
       class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.12)_0%,transparent_60%)] glow-bg"
     ></div>
+
+    <!-- cielo estrellado sutil -->
+    <div class="starry-sky"></div>
 
     <!-- partículas de luz flotantes (premium, súper sutil) -->
     <div class="particles" aria-hidden="true">
@@ -283,6 +292,35 @@
     </audio>
   </section>
 
+  <!-- sección padres y padrinos (nueva estructura) -->
+  <section
+    class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
+  >
+    <div class="max-w-2xl mx-auto space-y-10">
+      <p class="text-white/60 tracking-[0.4em] text-xs uppercase">
+        Acompañada siempre por el amor de
+      </p>
+
+      <h3 class="font-serif text-4xl md:text-5xl">Mis padres</h3>
+      <p class="text-white/80 text-lg leading-relaxed">
+        Ana Delia Guerrero Albarrán<br />
+        Carlos Jair Quezada Ortuño
+      </p>
+
+      <div class="w-24 h-px bg-white/30 mx-auto"></div>
+
+      <p class="text-white/60 tracking-[0.4em] text-xs uppercase">
+        Y guiada con cariño por
+      </p>
+
+      <h3 class="font-serif text-4xl md:text-5xl">Mis padrinos</h3>
+      <p class="text-white/80 text-lg leading-relaxed">
+        Mariana Carranza<br />
+        Carlos Rodríguez
+      </p>
+    </div>
+  </section>
+
   <!-- sección lugares del evento -->
   <section class="bg-[#0b1440] text-white py-24 px-6 opacity-0 fade-up">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
@@ -336,29 +374,53 @@
     </div>
   </section>
 
-  <!-- sección confirmación de asistencia -->
-  <section
-    class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
-  >
-    <h3 class="font-serif text-3xl mb-6">Confirma tu asistencia</h3>
+  <!-- sección confirmación de asistencia (estilo mockup con foto de fondo) -->
+  <section class="relative min-h-screen flex items-center justify-center px-6">
+    <!-- imagen de fondo -->
+    <div class="confirmacion-bg">
+      <img
+        src="assets/img/confirmacion-bg.jpg"
+        alt="Fondo confirmación"
+        class="w-full h-full object-cover"
+      />
+      <!-- overlay oscuro -->
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+    </div>
 
-    <p class="text-white/70 text-sm mb-10 max-w-xl mx-auto">
-      Tu presencia hará este día aún más especial. Por favor confirma tu
-      asistencia para compartir juntos este momento inolvidable.
-    </p>
-
-    <!-- botón whatsapp -->
-    <a
-      href="https://wa.me/5210000000000?text=Hola,%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Majo"
-      target="_blank"
-      class="inline-block px-8 py-3 rounded-full border border-white/40 text-white text-sm tracking-widest uppercase backdrop-blur-md hover:bg-white/10 transition"
+    <!-- tarjeta flotante -->
+    <div
+      class="confirmacion-card relative z-10 w-full max-w-md rounded-3xl p-8 text-center"
     >
-      Confirmar asistencia
-    </a>
+      <h3 class="font-serif text-3xl mb-6 text-white">¡Estás invitado!</h3>
 
-    <p class="text-xs text-white/40 mt-6">
-      (Aquí colocaremos el número real de WhatsApp)
-    </p>
+      <input
+        type="text"
+        placeholder="Nombre de invitado o familia"
+        class="w-full mb-4 px-4 py-3 rounded-full bg-transparent border border-white/40 text-white placeholder-white/50 outline-none"
+      />
+
+      <p class="text-sm text-white/80 mb-3">Confirmo que</p>
+
+      <div class="flex justify-center gap-6 mb-4 text-sm text-white">
+        <label class="flex items-center gap-2">
+          <input type="radio" name="asistencia" /> Asistiré
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="radio" name="asistencia" /> No asistiré
+        </label>
+      </div>
+
+      <textarea
+        placeholder="Puedes dejar un mensaje (opcional)"
+        class="w-full mb-6 px-4 py-3 rounded-2xl bg-transparent border border-white/40 text-white placeholder-white/50 outline-none h-28 resize-none"
+      ></textarea>
+
+      <button
+        class="w-full px-6 py-3 rounded-full border border-white/40 text-white text-sm tracking-widest uppercase hover:bg-white/20 transition"
+      >
+        Confirmar asistencia
+      </button>
+    </div>
   </section>
 
   <!-- sección foto y frase -->
@@ -390,33 +452,44 @@
   <section
     class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
   >
-    <h3 class="font-serif text-3xl mb-10">Horario del evento</h3>
+    <h3 class="font-serif text-4xl mb-12 text-left max-w-4xl mx-auto">
+      Mi gran día
+    </h3>
 
-    <div
-      class="max-w-3xl mx-auto grid sm:grid-cols-3 gap-8 text-sm text-white/70"
-    >
-      <div>
-        <p class="text-white text-lg font-serif mb-2">Misa</p>
-        <p>5:00 PM</p>
-      </div>
-      <div>
-        <p class="text-white text-lg font-serif mb-2">Recepción</p>
-        <p>7:00 PM</p>
-      </div>
-      <div>
-        <p class="text-white text-lg font-serif mb-2">Cena</p>
-        <p>8:00 PM</p>
-      </div>
-    </div>
-
-    <!-- mapa embebido placeholder -->
-    <div
-      class="max-w-4xl mx-auto mt-16 border border-white/20 rounded-2xl overflow-hidden"
-    >
+    <div class="max-w-4xl mx-auto space-y-6">
       <div
-        class="w-full h-[320px] flex items-center justify-center text-white/40 text-xs tracking-widest"
+        class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
       >
-        MAPA DEL EVENTO (AQUÍ IFRAME DE GOOGLE MAPS)
+        <span class="text-white/50 text-xs tracking-widest w-20">7:00 PM</span>
+        <span class="font-serif text-lg">Misa</span>
+      </div>
+
+      <div
+        class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+      >
+        <span class="text-white/50 text-xs tracking-widest w-20">9:00 PM</span>
+        <span class="font-serif text-lg">Recepción</span>
+      </div>
+
+      <div
+        class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+      >
+        <span class="text-white/50 text-xs tracking-widest w-20">9:30 PM</span>
+        <span class="font-serif text-lg">Entrada de la XV</span>
+      </div>
+
+      <div
+        class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+      >
+        <span class="text-white/50 text-xs tracking-widest w-20">10:00 PM</span>
+        <span class="font-serif text-lg">El vals</span>
+      </div>
+
+      <div
+        class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+      >
+        <span class="text-white/50 text-xs tracking-widest w-20">11:00 PM</span>
+        <span class="font-serif text-lg">Fiesta</span>
       </div>
     </div>
   </section>

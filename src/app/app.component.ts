@@ -4,6 +4,8 @@ import {
   ElementRef,
   OnDestroy,
   ViewChild,
+  ChangeDetectorRef,
+  OnInit,
 } from '@angular/core';
 
 @Component({
@@ -11,7 +13,7 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   // Opening cinematic state
   isOpened = false;
   overlayVisible = true;
@@ -30,9 +32,15 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;
   private countdownInterval?: any;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    // Evita NG0100: el countdown modifica bindings; hacerlo en OnInit es seguro
+    this.startCountdown();
+  }
+
   ngAfterViewInit(): void {
     this.initObserver();
-    this.startCountdown();
   }
 
   ngOnDestroy(): void {
@@ -49,6 +57,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     // iniciar música con fade‑in
     this.playMusic();
 
+    this.launchConfetti();
+
     this.isOpened = true;
 
     // fade del overlay
@@ -57,17 +67,20 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     // aparición progresiva del hero
     setTimeout(() => {
       this.heroRevealed = true;
+      this.cdr.detectChanges();
     }, 300);
 
     // aparición posterior del countdown
     setTimeout(() => {
       this.countdownRevealed = true;
+      this.cdr.detectChanges();
     }, 900);
 
     // eliminación completa del overlay y liberación de scroll
     setTimeout(() => {
       this.overlayVisible = false;
       document.body.style.overflow = 'auto';
+      this.cdr.detectChanges();
     }, 1600);
   }
 
@@ -151,5 +164,50 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
   private pad(value: number): string {
     return value.toString().padStart(2, '0');
+  }
+
+  private launchConfetti(): void {
+    console.log('CONFETI LANZADO');
+    const duration = 2200;
+    const end = Date.now() + duration;
+
+    const colors = ['#ffffff', '#d4af37', '#c0c0ff'];
+
+    const frame = () => {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti-piece';
+
+      const size = Math.random() * 6 + 4;
+      confetti.style.width = `${size}px`;
+      confetti.style.height = `${size}px`;
+
+      // asegurar que sea visible sobre todo
+      confetti.style.position = 'fixed';
+      confetti.style.top = '-10px';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.zIndex = '9999';
+      confetti.style.pointerEvents = 'none';
+
+      confetti.style.background =
+        colors[Math.floor(Math.random() * colors.length)];
+
+      confetti.style.animationDuration = Math.random() * 1.5 + 1.5 + 's';
+
+      const root = document.getElementById('confetti-root');
+      if (root) {
+        root.appendChild(confetti);
+      } else {
+        document.body.appendChild(confetti);
+      }
+
+      setTimeout(() => confetti.remove(), 2600);
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    };
+
+    // pequeño delay para asegurar que el overlay ya comenzó a desaparecer
+    setTimeout(() => frame(), 120);
   }
 }
