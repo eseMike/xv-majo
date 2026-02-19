@@ -7,6 +7,8 @@ import {
   ChangeDetectorRef,
   OnInit,
 } from '@angular/core';
+// @ts-ignore: AOS has no type definitions in this project
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('bgMusic') bgMusic?: ElementRef<HTMLAudioElement>;
 
-  private observer?: IntersectionObserver;
+  // private observer?: IntersectionObserver; // disabled while using AOS only
   private countdownInterval?: any;
 
   constructor(private cdr: ChangeDetectorRef) {}
@@ -40,12 +42,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.initObserver();
+    // this.initObserver(); // temporarily disabled to rely only on AOS
   }
 
   ngOnDestroy(): void {
     if (this.countdownInterval) clearInterval(this.countdownInterval);
-    this.observer?.disconnect();
+    // this.observer?.disconnect(); // observer disabled
   }
 
   openInvitation(): void {
@@ -58,6 +60,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.playMusic();
 
     this.launchConfetti();
+
+    setTimeout(() => AOS.refresh(), 500);
 
     this.isOpened = true;
 
@@ -81,6 +85,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.overlayVisible = false;
       document.body.style.overflow = 'auto';
       this.cdr.detectChanges();
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-out-cubic',
+        once: true,
+      });
+      AOS.refreshHard();
     }, 1600);
   }
 
@@ -114,6 +124,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }, stepTime);
   }
 
+  /*
   private initObserver(): void {
     this.observer = new IntersectionObserver(
       (entries) => {
@@ -134,6 +145,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       });
     });
   }
+  */
 
   private startCountdown(): void {
     const eventDate = new Date('May 2, 2026 00:00:00').getTime();

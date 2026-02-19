@@ -1,19 +1,4 @@
 <style>
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .fade-up {
-    animation: fadeUp 1.6s ease-out forwards;
-  }
-
   @keyframes floatGlow {
     0%,
     100% {
@@ -86,6 +71,7 @@
     filter: blur(0);
   }
 </style>
+
 <div [class.no-scroll]="!isOpened">
   <!-- contenedor global de confeti -->
   <div
@@ -229,6 +215,7 @@
     <div
       class="relative text-center space-y-8 px-6 cinematic-reveal hero-focus"
       [class.show]="heroRevealed"
+      data-aos="fade-up"
     >
       <p class="tracking-[0.5em] uppercase text-xs text-white/60">
         Reserva la fecha
@@ -239,7 +226,7 @@
       </h1>
 
       <h2
-        class="text-4xl sm:text-5xl md:text-6xl font-script name-glow"
+        class="text-4xl sm:text-5xl md:text-6xl font-script name-script name-glow"
         [class.show]="heroRevealed"
       >
         Majo
@@ -294,7 +281,8 @@
 
   <!-- sección padres y padrinos (nueva estructura) -->
   <section
-    class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
+    class="bg-[#0b1440] text-white py-24 px-6 text-center"
+    data-aos="fade-up"
   >
     <div class="max-w-2xl mx-auto space-y-10">
       <p class="text-white/60 tracking-[0.4em] text-xs uppercase">
@@ -322,7 +310,7 @@
   </section>
 
   <!-- sección lugares del evento -->
-  <section class="bg-[#0b1440] text-white py-24 px-6 opacity-0 fade-up">
+  <section class="bg-[#0b1440] text-white py-24 px-6" data-aos="fade-up">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
       <!-- tarjeta iglesia -->
       <div
@@ -375,7 +363,10 @@
   </section>
 
   <!-- sección confirmación de asistencia (estilo mockup con foto de fondo) -->
-  <section class="relative min-h-screen flex items-center justify-center px-6">
+  <section
+    class="relative min-h-screen flex items-center justify-center px-6"
+    data-aos="zoom-in"
+  >
     <!-- imagen de fondo -->
     <div class="confirmacion-bg">
       <img
@@ -425,7 +416,8 @@
 
   <!-- sección foto y frase -->
   <section
-    class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
+    class="bg-[#0b1440] text-white py-24 px-6 text-center"
+    data-aos="fade-up"
   >
     <!-- placeholder de foto -->
     <div class="max-w-md mx-auto mb-10">
@@ -450,7 +442,8 @@
   </section>
   <!-- sección horario y mapa -->
   <section
-    class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
+    class="bg-[#0b1440] text-white py-24 px-6 text-center"
+    data-aos="fade-up"
   >
     <h3 class="font-serif text-4xl mb-12 text-left max-w-4xl mx-auto">
       Mi gran día
@@ -495,7 +488,8 @@
   </section>
   <!-- sección mesa de regalos y vestimenta -->
   <section
-    class="bg-[#0b1440] text-white py-24 px-6 text-center opacity-0 fade-up"
+    class="bg-[#0b1440] text-white py-24 px-6 text-center"
+    data-aos="fade-up"
   >
     <h3 class="font-serif text-3xl mb-10">Mesa de regalos</h3>
 
