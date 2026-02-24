@@ -199,65 +199,75 @@
   }
 }
 
-/* ===== CIELO ESTRELLADO SUTIL ===== */
+/* ===== CIELO ESTRELLADO GLAM (PLATEADO) ===== */
 .starry-sky {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
+
+  /* Estrellas más grandes y plateadas */
   background-image:
     radial-gradient(
-      2px 2px at 20% 30%,
-      rgba(255, 255, 255, 0.35) 0%,
-      transparent 60%
+      6px 6px at 18% 28%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.6) 40%,
+      transparent 75%
     ),
     radial-gradient(
-      1.5px 1.5px at 70% 20%,
-      rgba(255, 255, 255, 0.28) 0%,
-      transparent 60%
+      5px 5px at 72% 22%,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.5) 45%,
+      transparent 75%
     ),
     radial-gradient(
-      1.8px 1.8px at 40% 80%,
-      rgba(255, 255, 255, 0.22) 0%,
-      transparent 60%
+      7px 7px at 40% 78%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.6) 40%,
+      transparent 75%
     ),
     radial-gradient(
-      1.2px 1.2px at 85% 65%,
-      rgba(255, 255, 255, 0.25) 0%,
-      transparent 60%
+      4px 4px at 85% 62%,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.45) 45%,
+      transparent 75%
     ),
     radial-gradient(
-      1.6px 1.6px at 10% 75%,
-      rgba(255, 255, 255, 0.18) 0%,
-      transparent 60%
+      6px 6px at 12% 72%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(255, 255, 255, 0.55) 45%,
+      transparent 75%
     );
+
   opacity: 0;
   animation: skyFadeIn 2.5s ease forwards;
   animation-delay: 0.6s;
 }
 
+/* Fade inicial */
 @keyframes skyFadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* leve parpadeo global del cielo */
+/* Brillo glam sutil */
 .starry-sky::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image: inherit;
-  opacity: 0.25;
-  animation: skyTwinkle 6s ease-in-out infinite alternate;
+  opacity: 0.4;
+  animation: skyTwinkle 5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
 }
 
 @keyframes skyTwinkle {
   0% {
-    opacity: 0.15;
+    opacity: 0.3;
   }
   100% {
-    opacity: 0.35;
+    opacity: 0.6;
   }
 }
 
@@ -338,6 +348,118 @@
   .event-card {
     padding: 16px 16px;
     border-radius: 20px;
+  }
+}
+
+/* ===== MI GRAN DÍA — EDITORIAL COLUMNA REAL ===== */
+
+.itinerario-layout {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 40px;
+  margin-top: 60px;
+  align-items: flex-start;
+}
+
+.itinerario-hours {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.itinerario-hour {
+  font-size: 12px;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.65);
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: center;
+}
+
+.itinerario-events {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.itinerario-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border 0.35s ease;
+}
+
+.itinerario-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.itinerario-event {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.itinerario-stars {
+  display: flex;
+  gap: 8px;
+}
+
+.itinerario-stars img {
+  width: 20px;
+  height: auto;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .itinerario-layout {
+    grid-template-columns: 70px 1fr;
+    gap: 18px;
+    margin-top: 40px;
+  }
+
+  .itinerario-hours {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .itinerario-hour {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+  }
+
+  .itinerario-events {
+    gap: 18px;
+  }
+
+  .itinerario-card {
+    border-radius: 24px;
+    padding: 14px 18px;
+  }
+
+  .itinerario-event {
+    font-size: 18px;
+  }
+
+  .itinerario-stars {
+    justify-content: flex-end;
   }
 }
 
@@ -568,5 +690,129 @@ input[type="radio"]:checked::after {
   .disco-ball {
     width: 95px;
     opacity: 0.2;
+  }
+}
+
+/* ===== PADRES / PADRINOS — DECOR GLAM ===== */
+
+.padres-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cluster superior tipo arco */
+.disco-cluster {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 220px;
+}
+
+/* Bolas individuales */
+.disco {
+  position: absolute;
+  width: 90px;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.6));
+  animation: discoClusterFloat 14s ease-in-out infinite alternate;
+}
+
+/* Distribución tipo arco */
+.disco-1 {
+  left: 0%;
+  top: 60px;
+  width: 85px;
+}
+.disco-2 {
+  left: 18%;
+  top: 30px;
+  width: 105px;
+}
+.disco-3 {
+  left: 38%;
+  top: 0px;
+  width: 150px;
+}
+.disco-4 {
+  left: 62%;
+  top: 35px;
+  width: 105px;
+}
+.disco-5 {
+  left: 82%;
+  top: 65px;
+  width: 85px;
+}
+
+@keyframes discoClusterFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Estrellas glitter laterales */
+.glitter-star {
+  position: absolute;
+  width: 260px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.75));
+  animation: glitterPulse 4s ease-in-out infinite alternate;
+}
+
+.glitter-left {
+  top: 140px;
+  left: 8%;
+}
+
+.glitter-right {
+  top: 160px;
+  right: 8%;
+  transform: scale(1.12);
+}
+
+@keyframes glitterPulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive ajustes */
+@media (max-width: 768px) {
+  .disco-cluster {
+    width: 280px;
+    top: -20px;
+  }
+
+  .disco {
+    width: 60px;
+  }
+
+  .glitter-star {
+    width: 120px;
+    height: auto;
+    opacity: 0.7;
+  }
+
+  .glitter-left {
+    top: 120px;
+    left: 4%;
+  }
+
+  .glitter-right {
+    top: 130px;
+    right: 4%;
   }
 }
