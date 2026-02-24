@@ -106,12 +106,12 @@
 
 .hero-focus {
   opacity: 0;
-  filter: blur(8px);
-  transform: scale(1.04);
+  filter: blur(14px);
+  transform: scale(1.08);
   transition:
-    opacity 1.2s ease,
-    filter 1.2s ease,
-    transform 1.2s ease;
+    opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-focus.show {
@@ -450,7 +450,123 @@ button {
 }
 
 /* Nombre "Majo" mantiene estilo script */
+
 .name-script {
   font-family: "Great Vibes", cursive;
   letter-spacing: 0.03em;
+}
+
+/* ===== MICRO-ANIMACIONES — FORMULARIO CONFIRMACIÓN ===== */
+
+input,
+textarea {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #ffffff;
+  transition:
+    border 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.25s ease,
+    background 0.35s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+}
+
+/* Radios elegantes */
+input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    border 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+input[type="radio"]::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 999px;
+  background: #ffffff;
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+input[type="radio"]:checked {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+input[type="radio"]:checked::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== BOLAS DISCO — IMPLEMENTACIÓN LIMPIA ===== */
+
+.disco-ball {
+  position: absolute;
+  width: 150px;
+  opacity: 0.32;
+  pointer-events: none;
+  filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.25));
+  animation: discoMotion 20s linear infinite;
+  z-index: 0;
+}
+
+.disco-left {
+  top: 60px;
+  left: 60px;
+  animation-duration: 26s;
+}
+
+.disco-right {
+  top: 80px;
+  right: 70px;
+  animation-duration: 18s;
+}
+
+@keyframes discoMotion {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .disco-ball {
+    width: 95px;
+    opacity: 0.2;
+  }
 }

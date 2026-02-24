@@ -68,17 +68,17 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     // fade del overlay
     this.overlayFading = true;
 
-    // aparición progresiva del hero
+    // aparición progresiva del hero (después de que overlay desaparece)
     setTimeout(() => {
       this.heroRevealed = true;
       this.cdr.detectChanges();
-    }, 300);
+    }, 1700);
 
     // aparición posterior del countdown
     setTimeout(() => {
       this.countdownRevealed = true;
       this.cdr.detectChanges();
-    }, 900);
+    }, 2200);
 
     // eliminación completa del overlay y liberación de scroll
     setTimeout(() => {

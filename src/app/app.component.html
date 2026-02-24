@@ -1,77 +1,3 @@
-<style>
-  @keyframes floatGlow {
-    0%,
-    100% {
-      transform: translateY(0);
-      opacity: 0.15;
-    }
-    50% {
-      transform: translateY(-10px);
-      opacity: 0.25;
-    }
-  }
-
-  .glow-bg {
-    animation: floatGlow 8s ease-in-out infinite;
-  }
-  .no-scroll {
-    overflow: hidden;
-    height: 100vh;
-  }
-  .no-scroll section:not(:first-of-type) {
-    display: none;
-  }
-
-  .overlay-enter {
-    opacity: 1;
-    filter: blur(0px);
-    transform: scale(1);
-    transition:
-      opacity 700ms ease,
-      filter 700ms ease,
-      transform 700ms ease;
-  }
-
-  .overlay-exit {
-    opacity: 0;
-    filter: blur(10px);
-    transform: scale(1.02);
-  }
-
-  .cinematic-reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    filter: blur(6px);
-    transition:
-      opacity 900ms ease,
-      transform 900ms ease,
-      filter 900ms ease;
-  }
-
-  .cinematic-reveal.show {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-
-  .cinematic-reveal-delayed {
-    opacity: 0;
-    transform: translateY(14px);
-    filter: blur(6px);
-    transition:
-      opacity 900ms ease,
-      transform 900ms ease,
-      filter 900ms ease;
-    transition-delay: 250ms;
-  }
-
-  .cinematic-reveal-delayed.show {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-</style>
-
 <div [class.no-scroll]="!isOpened">
   <!-- contenedor global de confeti -->
   <div
@@ -91,7 +17,7 @@
       <button
         type="button"
         (click)="openInvitation()"
-        class="px-8 py-4 rounded-full border border-white/40 text-white text-sm tracking-[0.3em] uppercase backdrop-blur-md hover:bg-white/10 transition"
+        class="px-8 py-4 rounded-full border border-white/40 text-white text-sm tracking-[0.3em] uppercase backdrop-blur-md hover:bg-white/15 hover:scale-[1.04] active:scale-95 transition-all duration-300"
       >
         Abrir invitación
       </button>
@@ -211,22 +137,35 @@
       ></span>
     </div>
 
+    <!-- bolas disco decorativas (estructura base) -->
+    <img
+      src="assets/img/disco-ball-silver.png"
+      alt="Disco ball left"
+      class="disco-ball disco-left"
+    />
+    <img
+      src="assets/img/disco-ball-silver.png"
+      alt="Disco ball right"
+      class="disco-ball disco-right"
+    />
+
     <!-- contenido central -->
     <div
-      class="relative text-center space-y-8 px-6 cinematic-reveal hero-focus"
+      class="relative text-center space-y-10 px-6 cinematic-reveal hero-focus"
       [class.show]="heroRevealed"
-      data-aos="fade-up"
     >
       <p class="tracking-[0.5em] uppercase text-xs text-white/60">
         Reserva la fecha
       </p>
 
-      <h1 class="text-5xl sm:text-6xl md:text-7xl font-serif tracking-wide">
+      <h1
+        class="text-6xl sm:text-7xl md:text-8xl lg:text-[110px] font-serif tracking-wide leading-tight"
+      >
         Mis XV
       </h1>
 
       <h2
-        class="text-4xl sm:text-5xl md:text-6xl font-script name-script name-glow"
+        class="text-5xl sm:text-6xl md:text-7xl lg:text-[120px] font-script name-script name-glow mt-2"
         [class.show]="heroRevealed"
       >
         Majo
@@ -237,11 +176,7 @@
       </div>
 
       <!-- cuenta regresiva -->
-      <div
-        id="countdown"
-        class="pt-8 text-white/80 cinematic-reveal-delayed"
-        [class.show]="countdownRevealed"
-      >
+      <div id="countdown" class="pt-8 text-white/80">
         <div class="flex gap-6 justify-center text-center">
           <div>
             <p class="text-3xl font-serif">{{ days }}</p>
@@ -267,7 +202,7 @@
     <div class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 px-4">
       <button
         (click)="playMusic()"
-        class="px-6 py-3 rounded-full border border-white/40 text-white text-sm tracking-widest uppercase backdrop-blur-md hover:bg-white/10 transition"
+        class="px-6 py-3 rounded-full border border-white/40 text-white text-sm tracking-widest uppercase backdrop-blur-md hover:bg-white/15 hover:scale-[1.04] active:scale-95 transition-all duration-300"
       >
         Escuchar invitación
       </button>
@@ -314,7 +249,7 @@
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
       <!-- tarjeta iglesia -->
       <div
-        class="border border-white/20 rounded-2xl p-8 text-center backdrop-blur-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/30"
+        class="border border-white/20 rounded-2xl p-8 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-black/40 hover:scale-[1.02]"
       >
         <h3 class="font-serif text-2xl mb-4">Ceremonia religiosa</h3>
         <p class="text-white/70 text-sm mb-6">
@@ -338,7 +273,7 @@
 
       <!-- tarjeta salón -->
       <div
-        class="border border-white/20 rounded-2xl p-8 text-center backdrop-blur-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/30"
+        class="border border-white/20 rounded-2xl p-8 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-black/40 hover:scale-[1.02]"
       >
         <h3 class="font-serif text-2xl mb-4">Recepción</h3>
         <p class="text-white/70 text-sm mb-6">
@@ -407,7 +342,7 @@
       ></textarea>
 
       <button
-        class="w-full px-6 py-3 rounded-full border border-white/40 text-white text-sm tracking-widest uppercase hover:bg-white/20 transition"
+        class="w-full px-6 py-3 rounded-full border border-white/40 text-white text-sm tracking-widest uppercase hover:bg-white/15 hover:scale-[1.04] active:scale-95 transition-all duration-300"
       >
         Confirmar asistencia
       </button>
@@ -445,13 +380,20 @@
     class="bg-[#0b1440] text-white py-24 px-6 text-center"
     data-aos="fade-up"
   >
-    <h3 class="font-serif text-4xl mb-12 text-left max-w-4xl mx-auto">
+    <h3
+      class="font-serif text-4xl mb-12 text-left max-w-4xl mx-auto"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       Mi gran día
     </h3>
 
     <div class="max-w-4xl mx-auto space-y-6">
       <div
         class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        data-aos-duration="900"
       >
         <span class="text-white/50 text-xs tracking-widest w-20">7:00 PM</span>
         <span class="font-serif text-lg">Misa</span>
@@ -459,6 +401,9 @@
 
       <div
         class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-duration="900"
       >
         <span class="text-white/50 text-xs tracking-widest w-20">9:00 PM</span>
         <span class="font-serif text-lg">Recepción</span>
@@ -466,6 +411,9 @@
 
       <div
         class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+        data-aos="fade-up"
+        data-aos-delay="300"
+        data-aos-duration="900"
       >
         <span class="text-white/50 text-xs tracking-widest w-20">9:30 PM</span>
         <span class="font-serif text-lg">Entrada de la XV</span>
@@ -473,6 +421,9 @@
 
       <div
         class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+        data-aos="fade-up"
+        data-aos-delay="400"
+        data-aos-duration="900"
       >
         <span class="text-white/50 text-xs tracking-widest w-20">10:00 PM</span>
         <span class="font-serif text-lg">El vals</span>
@@ -480,6 +431,9 @@
 
       <div
         class="flex items-center gap-6 border border-white/20 rounded-full px-6 py-4"
+        data-aos="fade-up"
+        data-aos-delay="500"
+        data-aos-duration="900"
       >
         <span class="text-white/50 text-xs tracking-widest w-20">11:00 PM</span>
         <span class="font-serif text-lg">Fiesta</span>
@@ -491,20 +445,36 @@
     class="bg-[#0b1440] text-white py-24 px-6 text-center"
     data-aos="fade-up"
   >
-    <h3 class="font-serif text-3xl mb-10">Mesa de regalos</h3>
+    <h3
+      class="font-serif text-3xl mb-10"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      Mesa de regalos
+    </h3>
 
-    <p class="text-white/70 text-sm max-w-xl mx-auto mb-12">
+    <p
+      class="text-white/70 text-sm max-w-xl mx-auto mb-12"
+      data-aos="fade-up"
+      data-aos-delay="150"
+      data-aos-duration="900"
+    >
       Tu presencia es el mejor regalo, pero si deseas tener un detalle conmigo,
       aquí encontrarás algunas opciones especiales.
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+    <div
+      class="flex flex-col sm:flex-row gap-6 justify-center mb-16"
+      data-aos="fade-up"
+      data-aos-delay="300"
+      data-aos-duration="900"
+    >
       <!-- botón Liverpool -->
       <a
         href="#"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-block px-6 py-3 rounded-full border border-white/40 text-white text-xs tracking-widest uppercase backdrop-blur-md hover:bg-white/10 transition"
+        class="inline-block px-6 py-3 rounded-full border border-white/40 text-white text-xs tracking-widest uppercase backdrop-blur-md transition-all duration-500 hover:bg-white/15 hover:shadow-xl hover:shadow-white/10 hover:-translate-y-1 hover:scale-[1.05] active:scale-95"
       >
         Ver mesa en Liverpool
       </a>
