@@ -114,6 +114,13 @@
     transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.hero-focus-aux {
+  margin-top: initial;
+  @media (min-width: 768px) {
+    margin-top: 3rem;
+  }
+}
+
 .hero-focus.show {
   opacity: 1;
   filter: blur(0);
@@ -774,7 +781,7 @@ input[type="radio"]:checked::after {
 .glitter-star {
   position: absolute;
   z-index: 3;
-  width: 260px;
+  width: 420px;
   height: auto;
   pointer-events: none;
   filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.75));
@@ -782,14 +789,14 @@ input[type="radio"]:checked::after {
 }
 
 .glitter-left {
-  top: 140px;
-  left: 8%;
+  top: 90px;
+  left: -12%;
 }
 
 .glitter-right {
-  top: 160px;
-  right: 8%;
-  transform: scale(1.12);
+  top: 40px;
+  right: -12%;
+  transform: scale(1.25);
 }
 
 @keyframes glitterPulse {
@@ -820,19 +827,44 @@ input[type="radio"]:checked::after {
   }
 
   .glitter-star {
-    width: 120px;
+    width: 220px;
     height: auto;
     opacity: 0.7;
   }
 
   .glitter-left {
-    top: 120px;
-    left: 4%;
+    top: 80px;
+    left: -18%;
   }
 
   .glitter-right {
-    top: 130px;
-    right: 4%;
+    top: 40px;
+    right: -18%;
+  }
+}
+
+/* ===== DIVISOR ORNAMENTAL (Padres / Padrinos) ===== */
+.ornament-divider {
+  display: flex;
+  justify-content: center;
+  margin: 22px 0;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+.ornament-divider__svg {
+  width: 160px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .ornament-divider {
+    margin: 18px 0;
+  }
+
+  .ornament-divider__svg {
+    width: 130px;
   }
 }
 

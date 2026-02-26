@@ -138,20 +138,18 @@
     </div>
 
     <!-- bolas disco decorativas (estructura base) -->
-    <img
-      src="assets/img/disco-ball-silver.png"
-      alt="Disco ball left"
-      class="disco-ball disco-left"
-    />
-    <img
-      src="assets/img/disco-ball-silver.png"
-      alt="Disco ball right"
-      class="disco-ball disco-right"
-    />
+    <!-- nuevo cluster glam hero -->
+    <div class="disco-cluster hero-cluster">
+      <img
+        src="assets/decor/disco-cluster-glam.png"
+        alt="Disco cluster hero"
+        class="disco-cluster-img"
+      />
+    </div>
 
     <!-- contenido central -->
     <div
-      class="relative text-center space-y-10 px-6 cinematic-reveal hero-focus"
+      class="relative text-center space-y-10 px-6 cinematic-reveal hero-focus hero-focus-aux"
       [class.show]="heroRevealed"
     >
       <p class="tracking-[0.5em] uppercase text-xs text-white/60">
@@ -229,7 +227,7 @@
         />
       </div>
     </div>
-    <div class="max-w-2xl mx-auto space-y-10 personalFix">
+    <div class="max-w-2xl mx-auto space-y-10 personalFix padres-content">
       <p class="text-white/60 tracking-[0.4em] text-xs uppercase">
         Acompañada siempre por el amor de
       </p>
@@ -240,7 +238,67 @@
         Carlos Jair Quezada Ortuño
       </p>
 
-      <div class="w-24 h-px bg-white/30 mx-auto"></div>
+      <!-- divisor ornamental -->
+      <div class="ornament-divider" aria-hidden="true">
+        <svg
+          class="ornament-divider__svg"
+          viewBox="0 0 520 40"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          focusable="false"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <!-- líneas -->
+          <path
+            d="M6 20H216"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            opacity="0.95"
+          />
+          <path
+            d="M304 20H514"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            opacity="0.95"
+          />
+
+          <!-- puntitos cerca del centro -->
+          <circle cx="232" cy="20" r="2.2" fill="currentColor" opacity="0.9" />
+          <circle cx="288" cy="20" r="2.2" fill="currentColor" opacity="0.9" />
+
+          <!-- flor central -->
+          <g
+            transform="translate(260 20)"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            opacity="0.95"
+          >
+            <path d="M0-12 L0-3" />
+            <path d="M0 3 L0 12" />
+            <path d="M-12 0 L-3 0" />
+            <path d="M3 0 L12 0" />
+            <path d="M-8-8 L-2.4-2.4" />
+            <path d="M8-8 L2.4-2.4" />
+            <path d="M-8 8 L-2.4 2.4" />
+            <path d="M8 8 L2.4 2.4" />
+            <circle
+              cx="0"
+              cy="0"
+              r="3.2"
+              fill="currentColor"
+              opacity="0.95"
+              stroke="none"
+            />
+          </g>
+        </svg>
+      </div>
 
       <p class="text-white/60 tracking-[0.4em] text-xs uppercase">
         Y guiada con cariño por
@@ -420,7 +478,7 @@
       />
     </div>
 
-    <div class="itinerario-layout max-w-4xl mx-auto">
+    <div class="itinerario-layout max-w-4xl mx-auto itinerario-content">
       <!-- columna izquierda horas -->
       <div class="itinerario-hours">
         <div class="itinerario-hour">2:00 PM</div>
