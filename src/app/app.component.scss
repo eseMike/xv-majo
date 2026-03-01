@@ -781,10 +781,10 @@ input[type="radio"]:checked::after {
 .glitter-star {
   position: absolute;
   z-index: 3;
-  width: 420px;
+  width: 480px;
   height: auto;
   pointer-events: none;
-  filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.75));
+  filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.6));
   animation: glitterPulse 4s ease-in-out infinite alternate;
 }
 
@@ -801,12 +801,12 @@ input[type="radio"]:checked::after {
 
 @keyframes glitterPulse {
   0% {
-    opacity: 0.55;
-    transform: scale(0.95);
+    opacity: 0.65;
+    transform: scale(0.98);
   }
   100% {
-    opacity: 0.85;
-    transform: scale(1.05);
+    opacity: 0.9;
+    transform: scale(1.02);
   }
 }
 
@@ -827,9 +827,10 @@ input[type="radio"]:checked::after {
   }
 
   .glitter-star {
-    width: 220px;
+    width: 260px;
     height: auto;
-    opacity: 0.7;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.55));
   }
 
   .glitter-left {
@@ -878,7 +879,9 @@ input[type="radio"]:checked::after {
 
 .secondFix {
   margin-top: 3rem;
+  margin-bottom: 0rem;
   @media (min-width: 768px) {
     margin-top: 7rem;
+    margin-bottom: 5rem;
   }
 }
